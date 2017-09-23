@@ -14,11 +14,15 @@ description: |
 builddeps  :
     - ghostscript
     - pkgconfig(ImageMagick)
+    - ww-plotutils
+    - ww-plotutils-devel
+rundeps  :
+    - ww-plotutils
+libsplit: no
 setup      : |
     %configure
 build      : |
     %make
 install    : |
     %make_install
-    install -Dm 0644 $pkgfiles/plugins_linux_3.62_Mx86_64_K3.2.so $installdir/usr/lib/pstoedit/plugins_linux_3.62_Mx86_64_K3.2.so
 

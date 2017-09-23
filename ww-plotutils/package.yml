@@ -13,7 +13,7 @@ description: |
     # Use eopkg lc to see categories
     # Can use common/Scripts/yauto.py URL_TO_ARCHIVE to get sha / initial yaml
 setup: |
-    %configure
+    %configure --enable-libplotter
 build: |
     %make
 install: |

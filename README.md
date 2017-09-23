@@ -6,19 +6,27 @@ I'm using the Solus OS these days (https://solus-project.com), and everything is
 Usage
 -----
 
-Requires [solbuild](https://github.com/solus-project/solbuild) to be set up.
+#. Set up [solbuild](https://github.com/solus-project/solbuild).  Go through [these instructions](https://solus-project.com/articles/packaging/building-a-package/en/) up through and including "Updating solbuild."
 
-```
-$ mkdir build
-$ cd build
-$ sudo solbuild build ../<package>/package.yml
-$ sudo eopkg install <package>-<version>*.eopkg
-```
+#. Set up the local repository as per https://solus-project.com/articles/packaging/local-repository/en/ .
+
+   #. Ensure that the local image is set up through:
+
+          $ sudo solbuild init -p local-unstable-x86_64
+          $ sudo solbuild update -p local-unstable-x86_64
+
+#. Clone this repo as `git clone https://github.com/wwoods/solus-packages`.
+#. Run `make`, which will prompt for "sudo" access, build the packages, and copy them to `/var/lib/solbuild/local`.  Should also automatically rebuild the local package index.
+#. Likely, you will also need to add the repo to eopkg:
+
+       $ sudo eopkg add-repo Local /var/lib/solbuild/local/eopkg-index.xml
+
+The below packages will then be available via the Software Manager (or eopkg).
 
 Packages
 --------
 
-ww-plotutils: GNU plotutils, includes libplot.
+ww-plotutils: GNU plotutils, includes libplotter, needed for ww-pstoedit.
 
 ww-pstoedit: pstoedit with built-in SVG support.  This is for the [Inkscape 0.92-compatible Tex Text plugin](https://bitbucket.org/pitgarbe/textext).  Should be all you need to get the plugin working.
 
