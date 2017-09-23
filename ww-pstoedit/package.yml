@@ -1,0 +1,24 @@
+name       : ww-pstoedit
+version    : 3.70
+release    : 1
+source     :
+    - $pkgfiles/pstoedit-3.70.tar.gz : 06b86113f7847cbcfd4e0623921a8763143bbcaef9f9098e6def650d1ff8138c
+license    : GPL-2.0
+component  : multimedia.graphics
+summary    : pstoedit with SVG plugin
+description: |
+    PLEASE FILL ME IN
+    TODO: Add builddeps ww-plotutils
+
+    From http://www.pstoedit.net/
+builddeps  :
+    - ghostscript
+    - pkgconfig(ImageMagick)
+setup      : |
+    %configure
+build      : |
+    %make
+install    : |
+    %make_install
+    install -Dm 0644 $pkgfiles/plugins_linux_3.62_Mx86_64_K3.2.so $installdir/usr/lib/pstoedit/plugins_linux_3.62_Mx86_64_K3.2.so
+

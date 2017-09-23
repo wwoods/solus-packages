@@ -1,0 +1,20 @@
+name: ww-plotutils
+version: 2.6
+release: 1
+source:
+    - http://mirrors.peers.community/mirrors/gnu/plotutils/plotutils-2.6.tar.gz : 4f4222820f97ca08c7ea707e4c53e5a3556af4d8f1ab51e0da6ff1627ff433ab
+license: GPL-2.0
+category: multimedia.graphics
+summary: Woooo gnu plotutils package, including libplot for pstoedit
+description: |
+    Test
+    # See https://solus-project.com/articles/packaging/package.yml/en/ for more info
+    # As per solbuild README, use "sudo solbuild build path/to/yml" to build
+    # Use eopkg lc to see categories
+    # Can use common/Scripts/yauto.py URL_TO_ARCHIVE to get sha / initial yaml
+setup: |
+    %configure
+build: |
+    %make
+install: |
+    %make_install
