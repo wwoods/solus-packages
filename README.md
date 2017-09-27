@@ -17,9 +17,7 @@ Usage
 
 3. Clone this repo as `git clone https://github.com/wwoods/solus-packages`.
 4. Run `make`, which will prompt for "sudo" access, build the packages, and copy them to `/var/lib/solbuild/local`.  Should also automatically rebuild the local package index.
-5. Likely, you will also need to add the repo to eopkg:
-
-       $ sudo eopkg add-repo Local /var/lib/solbuild/local/eopkg-index.xml
+5. If you also want wine-staging, run `make wine`.
 
 The below packages will then be available via the Software Manager (or eopkg).
 
@@ -29,4 +27,6 @@ Packages
 ww-plotutils: GNU plotutils, includes libplotter, needed for ww-pstoedit.
 
 ww-pstoedit: pstoedit with built-in SVG support.  This is for the [Inkscape 0.92-compatible Tex Text plugin](https://bitbucket.org/pitgarbe/textext).  Should be all you need to get the plugin working.
+
+ww-wine-staging: Wine 2.17-staging for Solus OS.  Installs to /usr/local/wine-staging to prevent conflicts with the default repo's wine.  Best used with WINEPREFIX=~/.wine-staging too.  Must use `make wine` to build this package, it is not included under just `make`.
 
