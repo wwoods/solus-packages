@@ -1,12 +1,13 @@
 name : ww-wine-staging
 version: 2.17
-release: 1
+release: 2
 source    :
     - git|https://github.com/wine-mirror/wine : bb16263fe1974851f495435fef9a3d57fa2d4aa9
     - git|https://github.com/wine-compholio/wine-staging : 22cdd720aabcc283f97e569f469d209bc1ad5e9c
+    - git|https://github.com/Winetricks/winetricks : 1c616909eb73331537cd7c91f71efdc688589c36
 license:  GPL-2.0
 component: system.utils
-summary: wine w/ staging patches
+summary: wine w/ staging patches and winetricks
 description: |
     wine-staging
 libsplit: no
@@ -72,4 +73,8 @@ install : |
     pushd wine64
     %make_install
     popd
+    pushd $sources/winetricks.git
+    %make_install PREFIX=/usr/local/wine-staging
+    popd
+    install -D -m 0755 $pkgfiles/wine-staging $installdir/usr/local/bin/wine-staging
 

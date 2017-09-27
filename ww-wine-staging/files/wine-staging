@@ -1,0 +1,3 @@
+#! /usr/bin/env bash
+PATH=/usr/local/wine-staging/bin:$PATH WINEPREFIX=$HOME/.wine-staging PS1="(wine-staging) \w$ " bash --norc
+
