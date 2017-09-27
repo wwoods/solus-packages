@@ -1,7 +1,16 @@
 #! /usr/bin/env bash
+#set -x
+
 CMD="bash --norc"
+
+# Set up env
+export PATH=/usr/local/wine-staging/bin:$PATH
+export WINEPREFIX=$HOME/.wine-staging
+export PS1="(wine-staging) \w$ "
+
 if [ $# -ge 1 ]; then
-    CMD="$CMD -c"
+    "$@"
+else
+    bash --norc
 fi
-PATH=/usr/local/wine-staging/bin:$PATH WINEPREFIX=$HOME/.wine-staging PS1="(wine-staging) \w$ " $CMD "$*"
 
