@@ -34,3 +34,10 @@ For convenience, this installs a terminal application `/usr/local/bin/wine-stagi
 
 Must use `make wine` to build this package, it is not included under just `make`.
 
+Usage:
+
+    $ wine-staging
+    > Drops you into a console with WINEPREFIX=~/.wine-staging and PATH set correctly.
+    $ wine-staging wine --version
+    > Run the "wine --version" command within the wine-staging environment.
+
