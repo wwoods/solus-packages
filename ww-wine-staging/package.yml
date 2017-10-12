@@ -1,9 +1,9 @@
 name : ww-wine-staging
-version: 2.17
-release: 2
+version: 2.18
+release: 3
 source    :
-    - git|https://github.com/wine-mirror/wine : bb16263fe1974851f495435fef9a3d57fa2d4aa9
-    - git|https://github.com/wine-compholio/wine-staging : 22cdd720aabcc283f97e569f469d209bc1ad5e9c
+    - git|https://github.com/wine-mirror/wine : 4a2505a93a699baf9668af2cdfdd7b662d13c976
+    - git|https://github.com/wine-compholio/wine-staging : 726c476b6af2860930a41a3340c1bcd82e487cc4
     - git|https://github.com/Winetricks/winetricks : 1c616909eb73331537cd7c91f71efdc688589c36
 license:  GPL-2.0
 component: system.utils
@@ -48,6 +48,7 @@ builddeps  :
     - unixodbc-32bit-devel
 rundeps    :
     - freetype2-32bit
+    - harfbuzz-32bit
     - ncurses-32bit
 setup  : |
     bash -c "cd $sources/wine-staging.git/patches && ./patchinstall.sh DESTDIR=$workdir --all"
