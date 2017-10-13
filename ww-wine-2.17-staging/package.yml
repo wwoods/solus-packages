@@ -1,0 +1,81 @@
+name : ww-wine-staging2.17
+version: 2.17
+release: 1
+source    :
+    - git|https://github.com/wine-mirror/wine : bb16263fe1974851f495435fef9a3d57fa2d4aa9
+    - git|https://github.com/wine-compholio/wine-staging : 22cdd720aabcc283f97e569f469d209bc1ad5e9c
+    - git|https://github.com/Winetricks/winetricks : 1c616909eb73331537cd7c91f71efdc688589c36
+license:  GPL-2.0
+component: system.utils
+summary: wine w/ staging patches and winetricks
+description: |
+    wine-staging
+libsplit: no
+builddeps  :
+    - pkgconfig32(dbus-1)
+    - pkgconfig32(fontconfig)
+    - pkgconfig32(freetype2)
+    - pkgconfig32(glu)
+    - pkgconfig32(gnutls)
+    - pkgconfig32(gtk+-2.0)
+    - pkgconfig32(gtk+-3.0)
+    - pkgconfig32(ice)
+    - pkgconfig32(lcms2)
+    - pkgconfig32(libgphoto2)
+    - pkgconfig32(libmpg123)
+    - pkgconfig32(libpng)
+    - pkgconfig32(libtiff-4)
+    - pkgconfig32(libpulse)
+    - pkgconfig32(libv4l1)
+    - pkgconfig32(libxslt)
+    - pkgconfig32(ocl-icd)
+    - pkgconfig32(openal)
+    - pkgconfig32(x11)
+    - pkgconfig32(xcursor)
+    - pkgconfig32(xi)
+    - pkgconfig32(xinerama)
+    - pkgconfig32(xrandr)
+    - pkgconfig32(xshmfence)
+    - pkgconfig32(xxf86vm)
+    - pkgconfig32(zlib)
+    - cups-32bit-devel
+    - glibc-32bit-devel
+    - libgcc-32bit
+    - libjpeg-turbo-32bit-devel
+    - libpth-32bit-devel
+    - ncurses-32bit-devel
+    - openldap-32bit-devel
+    - unixodbc-32bit-devel
+rundeps    :
+    - freetype2-32bit
+    - harfbuzz-32bit
+    - ncurses-32bit
+setup  : |
+    bash -c "cd $sources/wine-staging.git/patches && ./patchinstall.sh DESTDIR=$workdir --all"
+    export WINEDEST=/usr/local/wine-staging-2.17
+    # Make 64 bit
+    mkdir wine64 && pushd wine64
+    ../configure --enable-win64 --prefix=$WINEDEST
+    popd
+    mkdir wine32 && pushd wine32
+    PKG_CONFIG_PATH=/usr/lib32/pkgconfig:/usr/share/pkgconfig:/usr/lib64/pkgconfig ../configure --with-wine64=../wine64 --prefix=$WINEDEST --libdir=$WINEDEST/lib32
+    popd
+build  : |
+    pushd wine64
+    %make
+    popd
+    pushd wine32
+    %make
+    popd
+install : |
+    pushd wine32
+    %make_install
+    popd
+    pushd wine64
+    %make_install
+    popd
+    pushd $sources/winetricks.git
+    %make_install PREFIX=/usr/local/wine-staging-2.17
+    popd
+    install -D -m 0755 $pkgfiles/wine-staging $installdir/usr/local/bin/wine-staging-2.17
+

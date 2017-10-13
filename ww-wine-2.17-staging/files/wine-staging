@@ -1,0 +1,16 @@
+#! /usr/bin/env bash
+#set -x
+
+CMD="bash --norc"
+
+# Set up env
+export PATH=/usr/local/wine-staging-2.17/bin:$PATH
+export WINEPREFIX=$HOME/.wine-staging
+export PS1="(wine-staging) \w$ "
+
+if [ $# -ge 1 ]; then
+    "$@"
+else
+    bash --norc
+fi
+

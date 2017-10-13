@@ -24,3 +24,14 @@ wine:
 	# Update local index
 	sudo solbuild index /var/lib/solbuild/local
 
+wine-2.17:
+	mkdir -p build
+	sudo rm -f /var/lib/solbuild/local/ww-wine-staging2.17-*.eopkg
+	# Build, then install ww-wine-staging
+	#cd build && sudo solbuild build -p local-unstable-x86_64 ../ww-wine-staging/package.yml
+	# TODO: Build with local unstable..  but for now, stable
+	cd build && sudo solbuild build ../ww-wine-2.17-staging/package.yml
+	cd build && sudo install ww-wine-2.17-staging-*.eopkg /var/lib/solbuild/local/
+	# Update local index
+	sudo solbuild index /var/lib/solbuild/local
+

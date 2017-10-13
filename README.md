@@ -28,7 +28,7 @@ ww-plotutils: GNU plotutils, includes libplotter, needed for ww-pstoedit.
 
 ww-pstoedit: pstoedit with built-in SVG support.  This is for the [Inkscape 0.92-compatible Tex Text plugin](https://bitbucket.org/pitgarbe/textext).  Should be all you need to get the plugin working.
 
-ww-wine-staging: Wine 2.17-staging for Solus OS.  Installs to /usr/local/wine-staging to prevent conflicts with the default repo's wine.
+ww-wine-staging: Wine 2.18-staging for Solus OS.  Installs to /usr/local/wine-staging to prevent conflicts with the default repo's wine.
 
 For convenience, this installs a terminal application `/usr/local/bin/wine-staging` which sets PATH and WINEPREFIX to use the staging binaries.  This is done so that the usage of ww-wine-staging is completely separate from the Solus wine package.
 
@@ -40,4 +40,6 @@ Usage:
     > Drops you into a console with WINEPREFIX=~/.wine-staging and PATH set correctly.
     $ wine-staging wine --version
     > Run the "wine --version" command within the wine-staging environment.
+
+ww-wine-staging2.17: Specifically 2.17.  Works for Endless Legend, whereas 2.18 does not.
 
